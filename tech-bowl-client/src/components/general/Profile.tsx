@@ -23,10 +23,10 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 
     return ( <>
         <h1 className="display-1 page-title mt-3"><small>Logged in as </small>{getUserName()}</h1>
-        <hr className="text-light container"/>
+        <hr className="text-dark container"/>
         <h2 className="display-3 page-title mt-5">Your Shelf:</h2>
 
-        <table className="table text-light container mt-5">
+        <table className="table text-dark container mt-5">
             <thead>
                 
             </thead>

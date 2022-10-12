@@ -57,7 +57,7 @@ const ItemInExplore: FunctionComponent<ItemInExploreProps> = ({item}) => {
 
     const handleOffcanvasClose = () => setShowDetails(false)
     const handleOffcanvasShow = (e:any) => {
-        if(e.classList['0'] != 'add-to-cart-btn') setShowDetails(true)
+        if(e.classList['0'] != 'add-to-cart-btn' && e.classList['0'] != 'fa-solid') setShowDetails(true)
     }
 
     return ( <>

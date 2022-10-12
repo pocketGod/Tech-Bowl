@@ -6,13 +6,14 @@
   --special-color: #3491FF;
 }
 
+
 *, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6{
   font-family: 'Josefin Sans', sans-serif;
 }
 
 .App {
   text-align: center;
-  background-color: var(--dark);
+  background-color: var(--light);
   min-height: 100vh;
 }
 
@@ -139,7 +140,7 @@
 }
 
 .page-title{
-  color: var(--light);
+  color: var(--dark);
 }
 
 .gen-sum{

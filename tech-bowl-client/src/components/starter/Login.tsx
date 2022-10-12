@@ -48,7 +48,7 @@ const Login: FunctionComponent<LoginProps> = () => {
     </div>
     <div>
         <form onSubmit={formik.handleSubmit} className='text-center container w-50'>
-            <h1 className="display-1 text-light my-4">Login</h1>
+            <h1 className="display-1 page-title my-4">Login</h1>
             <div className="mb-3 form-floating">
                 <input type="email" className="form-control" id="loginInputEmail" name='email' value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} placeholder="c"/>
                 <label htmlFor="loginInputEmail" className="form-label">Email address</label>

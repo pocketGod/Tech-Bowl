@@ -46,7 +46,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
     </div>
     <div>
         <form onSubmit={formik.handleSubmit} className='text-center container w-50'>
-        <h1 className="display-1 text-light my-4">Register</h1>
+        <h1 className="display-1 page-title my-4">Register</h1>
             <div className="mb-3 form-floating">
                 <input
                 type="text"

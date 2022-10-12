@@ -62,7 +62,7 @@ const Cart: FunctionComponent<CartProps> = () => {
     }, []);
 
     return ( <>
-        <h1 className="display-2 text-light">Cart</h1>
+        <h1 className="display-2 page-title">Cart</h1>
         <div className="container mx-auto d-flex justify-content-center w-100 mb-5 mt-3">
             <div className="">
                 <p className="gen-sum">cart total: {user.cartTotal}<span className="fw-light fs-6">₪</span></p>
