@@ -57,13 +57,10 @@ const Breakout: FunctionComponent<BreakoutProps> = ({width, height}) => {
     const bricks: any[] = [];
 
     const paddle = {
-        // place the paddle horizontally in the middle of the screen
         x: width / 2 - brickWidth / 2,
         y: 440,
         width: brickWidth*1.7,
         height: brickHeight,
-      
-        // paddle x velocity
         dx: 0
     };
 
@@ -72,9 +69,7 @@ const Breakout: FunctionComponent<BreakoutProps> = ({width, height}) => {
         y: 260,
         width: 5,
         height: 5,
-        // how fast the ball should go in either the x or y direction
         speed: 2,
-        // ball velocity
         dx: 0,
         dy: 0
     };
@@ -89,23 +84,19 @@ const Breakout: FunctionComponent<BreakoutProps> = ({width, height}) => {
     const loop = () => {
         requestAnimationFrame(loop);
         ctx.clearRect(0,0,width,height);
-      
-        // move paddle by it's velocity
+
         paddle.x += paddle.dx;
       
-        // prevent paddle from going through walls
         if (paddle.x < wallSize) {
           paddle.x = wallSize
         }
-        else if (paddle.x + brickWidth > width - wallSize) {
-          paddle.x = width - wallSize - brickWidth;
+        else if (paddle.x + brickWidth*1.7 > width - wallSize) {
+          paddle.x = width - wallSize - brickWidth*1.7;
         }
-      
-        // move ball by it's velocity
+
         ball.x += ball.dx;
         ball.y += ball.dy;
       
-        // prevent ball from going through walls by changing its velocity
         // left & right walls
         if (ball.x < wallSize) {
           ball.x = wallSize;
@@ -121,7 +112,7 @@ const Breakout: FunctionComponent<BreakoutProps> = ({width, height}) => {
           ball.dy *= -1;
         }
       
-        // reset ball if it goes below the screen
+        // bottom wall
         if (ball.y > height-wallSize-2) {
           ball.x = 130;
           ball.y = 260;
@@ -149,35 +140,24 @@ const Breakout: FunctionComponent<BreakoutProps> = ({width, height}) => {
           }, 500)
           
         }
-      
-        // check to see if ball collides with paddle. if they do change y velocity
+
         if (collides(ball, paddle)) {
           ball.dy *= -1;
-      
-          // move ball above the paddle otherwise the collision will happen again
-          // in the next frame
           ball.y = paddle.y - ball.height;
         }
-      
-        // check to see if ball collides with a brick. if it does, remove the brick
-        // and change the ball velocity based on the side the brick was hit on
+
         for (let i = 0; i < bricks.length; i++) {
           const brick = bricks[i];
       
           if (collides(ball, brick)) {
-            // remove brick from the bricks array
             bricks.splice(i, 1);
             score.current += 25
             setScoreAsState((prevVal)=>prevVal+25)
-      
-            // ball is above or below the brick, change y velocity
-            // account for the balls speed since it will be inside the brick when it
-            // collides
+
             if (ball.y + ball.height - ball.speed <= brick.y ||
                 ball.y >= brick.y + brick.height - ball.speed) {
               ball.dy *= -1;
             }
-            // ball is on either side of the brick, change x velocity
             else {
               ball.dx *= -1;
             }
@@ -192,7 +172,7 @@ const Breakout: FunctionComponent<BreakoutProps> = ({width, height}) => {
         ctx.fillRect(width - wallSize, 0, wallSize, height);
         ctx.fillRect(0, height-wallSize, width, wallSize);
 
-        // draw ball if it's moving
+        // draw ball if it has moved since last iteration
         if (ball.dx || ball.dy) {
             ctx.fillStyle = '#3491FF';
             ctx.fillRect(ball.x, ball.y, ball.width, ball.height);
@@ -212,29 +192,23 @@ const Breakout: FunctionComponent<BreakoutProps> = ({width, height}) => {
 
     
 
-// listen to keyboard events to move the paddle
-window.addEventListener('keydown', (e) => {
-    // left arrow key
-    if (e.keyCode === 37) {
-      paddle.dx = -5;
-    }
-    // right arrow key
-    else if (e.keyCode === 39) {
-      paddle.dx = 5;
-    }
-  });
+
+    window.addEventListener('keydown', (e) => {
+        if (e.keyCode === 37) {
+        paddle.dx = -5;
+        }
+        else if (e.keyCode === 39) {
+        paddle.dx = 5;
+        }
+    });
   
-  
-  // listen to keyboard events to stop the paddle if key is released
-  window.addEventListener('keyup', (e) => {
-    if (e.keyCode === 37 || e.keyCode === 39) {
-      paddle.dx = 0;
-    }
-  });
+    window.addEventListener('keyup', (e) => {
+        if (e.keyCode === 37 || e.keyCode === 39) {
+        paddle.dx = 0;
+        }
+    });
 
       
-
-
     useEffect(() => {
         if (canvasRef.current) {
             canvas = canvasRef.current;

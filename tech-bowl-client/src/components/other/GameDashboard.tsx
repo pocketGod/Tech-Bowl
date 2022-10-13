@@ -13,9 +13,9 @@ const GameDashboard: FunctionComponent<GameDashboardProps> = () => {
     const displayGame = () =>{
         switch (choosenGame) {
             case '':
-                return <div className="container">
-                    <h4 className="display-4">Select a Game</h4>
-                    <h4 className="display-5">Play with Arrow Keys</h4>
+                return <div className="waiting-to-select-game rounded-pill container my-5 py-5">
+                    <h4 className="display-4 my-5 pt-1">Select a Game</h4>
+                    <h4 className="display-5 mb-5 py-5">(Play with Arrow Keys)</h4>
                 </div>
             case 'snake':
                 return <Snake width={500} height={500}/>
