@@ -91,6 +91,7 @@ ul.navbar-nav{
 }
 
 .card-length-link, .balance-link, .logout-link{
+  width: 150px;
   border-left: 1px solid var(--special-color);
   border-right: 1px solid var(--special-color);
   border-radius: 10px;
@@ -167,7 +168,7 @@ ul.navbar-nav{
 }
 
 .shelf-item-pic{
-  width: 100px;
+  height: 100px;
   border-radius: 5px;
 }
 
@@ -185,4 +186,47 @@ ul.navbar-nav{
 
 .waiting-to-select-game{
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+
+.about-table{
+  border-collapse: separate;
+  border-spacing: 25px 5px;
+}
+
+.table-container{
+  display: flex;
+  justify-content: center;
+}
+
+.my-pic{
+  margin: 15px 0 0 0;
+  border-radius: 0 50% 50% 0;
+  border-bottom: 3px solid var(--special-color);
+  border-right: 1px solid var(--special-color);
+  width: 80%;
+  float: right;
+  background: linear-gradient(125deg, rgba(2,0,36,0) 40%, #348fff96, #3491FF);
+}
+
+.about-link-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.about-link-container>p{
+  color: var(--special-color);
+  margin: 0 0 -5px 0;
+  font-size: 60%;
+}
+
+.about-link{
+  text-decoration: none;
+  display: block;
+  margin: 10px 0 0 0;
+}
+.about-link:hover{
+  transform: scale(1.03);
 }

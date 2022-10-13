@@ -80,10 +80,12 @@ const Cart: FunctionComponent<CartProps> = () => {
                     </div>
                 ))}
             </div>
-        </>):(
-            <div className="empty-cart-container pb-5">
-                <img className="pb-3 pt-5 mb-5" src="/empty-cart.png" alt="No items in cart" />
-            </div>)}
+        </>):(<>
+            <h1 className="display-1 page-title mt-3">Cart</h1>
+            <div className="empty-cart-container">
+                <img className="pb-3 pt-5 mb-3" src="/empty-cart.png" alt="No items in cart" />
+            </div>
+        </>)}
         
     </> );
 }

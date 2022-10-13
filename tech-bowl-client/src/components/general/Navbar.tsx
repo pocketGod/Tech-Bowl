@@ -62,8 +62,8 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
                             <NavLink className="nav-link fs-5 mx-3" to="/profile">Profile</NavLink>
                         </li>
                     </ul>
-                    <ul className="navbar-nav ">
-                        <li className="nav-item">
+                    <ul className="navbar-nav float-end">
+                        <li className="nav-item ">
                             <NavLink to="/cart" type="button" className="nav-link me-3 position-relative card-length-link">
                             Cart
                             {userBrief.cartLength ? (
