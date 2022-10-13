@@ -15,7 +15,13 @@
   text-align: center;
   background-color: var(--light);
   min-height: 100vh;
+  overflow-x: hidden;
 }
+
+.banner-img{
+  width: 50%;
+}
+
 
 .dark-button[disabled]{
   background-color: var(--very-dark) !important;
@@ -28,6 +34,10 @@
 .dark-button:not([disabled]):hover{
   background-color: var(--light) !important;
   color: black;
+}
+
+.home-container{
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 .card-item-icon{
@@ -45,7 +55,13 @@
 }
 
 .navbar-banner{
-  width: 200px;
+  width: 140px;
+  margin: -10px 0 -2px 0;
+}
+
+ul.navbar-nav{
+  height: 100%;
+  /* padding-top: 73px; */
 }
 
 .main-nav{
@@ -121,14 +137,13 @@
 .footer-container{
   padding: 7px 25px;
   position: sticky;
-  bottom: 0;
+  bottom: -1px;
   margin-top: 14.7vh;
-  background-color: var(--semi-dark);
+  background-color: var(--dark);
   color: var(--light);
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px, rgba(134, 134, 134, 0.308) 0px 30px 10px -12px inset, rgba(0, 0, 0, 0.9) 0px 18px 36px -18px inset;
   border-top: 1px solid var(--semi-dark);
-  box-shadow: rgba(58, 58, 58, 0.25) 0px 30px 10px -12px inset, rgba(0, 0, 0, 0.9) 0px 18px 36px -18px inset;
-  
+  border-bottom: 1px solid var(--semi-dark);
 }
 
 .footer-logo{
@@ -162,4 +177,8 @@
 
 .offcanvas-table, .offcanvas-table-header, .offcanvas-table-row, .offcanvas-table-cell{
   border: none !important;
+}
+
+#snakeCanvas{
+  border: 14px solid lightgray;
 }

@@ -40,12 +40,9 @@ const Register: FunctionComponent<RegisterProps> = () => {
         }
     })
 
-    return ( <>
-    <div className="header-container">
-        <img src="header.jpg" className="w-50"/>
-    </div>
-    <div>
-        <form onSubmit={formik.handleSubmit} className='text-center container w-50'>
+    return ( <div className="row">
+    <div className="col-lg-7 col-12 col-md-7">
+        <form onSubmit={formik.handleSubmit} className='text-center container w-75 float-md-end'>
         <h1 className="display-1 page-title my-4">Register</h1>
             <div className="mb-3 form-floating">
                 <input
@@ -78,7 +75,10 @@ const Register: FunctionComponent<RegisterProps> = () => {
             </div>
         </form>
     </div>
-    </> );
+    <div className="col-lg-5 col-12 col-md-5 pt-md-4">
+        <img src="logo-with-text.png" className="banner-img float-md-start mt-md-5 pt-md-5"/>
+    </div>
+    </div> );
 }
  
 export default Register;

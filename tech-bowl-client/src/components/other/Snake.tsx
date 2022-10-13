@@ -1,5 +1,7 @@
-import { FunctionComponent, useEffect, useRef, useState } from "react";
-import { successMessage } from "../../services/ToastService";
+import { FunctionComponent, useContext, useEffect, useRef, useState } from "react";
+import { UserContext } from "../../App";
+import { errorMessage, successMessage } from "../../services/ToastService";
+import { editUserBalance } from "../../services/UserService";
 
 interface SnakeProps {
     width: number;
@@ -8,15 +10,19 @@ interface SnakeProps {
  
 const Snake: FunctionComponent<SnakeProps> = ({ width, height }) => {
 
+    const userBrief = useContext(UserContext)
+
     const canvasRef = useRef<HTMLCanvasElement>(null)
-    const [score, setScore] = useState<number>(0)
+    const [inGamePoints, setInGamePoints] = useState<number>(0)
+    const score = useRef<number>(0)
     const [newGameFlag, setNewGameFlag] = useState<boolean>(false)
     const [isDead, setIsDead] = useState<boolean>(true)
-    // // scoreIs = document.getElementById('score'),
+
     let direction = ''
     let directionQueue = ''
     let fps = 70
     let snake: any[] = []
+    let pointsPerEat: number = 25
     let snakeLength = 5
     let cellSize = 20
     let snakeColor = '#3498db'
@@ -34,7 +40,7 @@ const Snake: FunctionComponent<SnakeProps> = ({ width, height }) => {
 
     useEffect(() => {
 
-        window.addEventListener("keydown", function(e) {
+        window.addEventListener("keydown", (e) => {
             if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
                 e.preventDefault()
             }
@@ -177,7 +183,9 @@ const Snake: FunctionComponent<SnakeProps> = ({ width, height }) => {
             snake[snake.length] = {x: head.x, y: head.y};
             createFood();
             drawFood();
-            setScore((currentScore)=> currentScore+10)
+            setInGamePoints((currentScore)=> currentScore+pointsPerEat)
+            score.current += pointsPerEat
+
 
         }
     
@@ -197,7 +205,9 @@ const Snake: FunctionComponent<SnakeProps> = ({ width, height }) => {
         setIsDead(false)
         snakeLength = 5
         drawSnake();
-        setScore(0)
+        score.current = 0
+        setInGamePoints(0)
+
         direction = 'right'; // initial direction
         directionQueue = 'right';
         context.beginPath();
@@ -216,7 +226,13 @@ const Snake: FunctionComponent<SnakeProps> = ({ width, height }) => {
         clearInterval(loop);
         loop = undefined
         setIsDead(true)
-        successMessage(`you've won ${score}$`)
+            if(score.current == 0) errorMessage(`you've won 0₪ playing Snake, Better luck next time...`)
+            else {
+                successMessage(`Congratulations! you've won ${score.current}₪ playing snake`)
+                editUserBalance(score.current).then(()=>{
+                    userBrief.setUserBalance((prevVal:number)=>prevVal+score.current)
+                }).catch((err)=>console.log(err))
+            }
         
     }
 
@@ -225,9 +241,11 @@ const Snake: FunctionComponent<SnakeProps> = ({ width, height }) => {
     }
         
     return ( <>
-    <button disabled={!isDead} onClick={handleRestart}>New Game</button>
-    <h3 className="text-dark">{score}</h3>
-        <canvas ref={canvasRef} height={height} width={width} />
+        <h3 className="text-dark">Score: {inGamePoints}</h3>
+        <canvas id="snakeCanvas" ref={canvasRef} height={height} width={width} />
+        <br />
+        <button disabled={!isDead} onClick={handleRestart}>New Game</button>
+
     </> );
 }
  

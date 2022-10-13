@@ -48,7 +48,7 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
                 <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-end">
                         <li className="nav-item">
                             <NavLink className="nav-link fs-5 mx-3" aria-current="page" to="/explore">Explore</NavLink>
                         </li>
@@ -62,7 +62,7 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
                             <NavLink className="nav-link fs-5 mx-3" to="/profile">Profile</NavLink>
                         </li>
                     </ul>
-                    <ul className="navbar-nav">
+                    <ul className="navbar-nav ">
                         <li className="nav-item">
                             <NavLink to="/cart" type="button" className="nav-link me-3 position-relative card-length-link">
                             Cart

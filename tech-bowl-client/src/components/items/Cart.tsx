@@ -62,16 +62,17 @@ const Cart: FunctionComponent<CartProps> = () => {
     }, []);
 
     return ( <>
-        <h1 className="display-2 page-title">Cart</h1>
-        <div className="container mx-auto d-flex justify-content-center w-100 mb-5 mt-3">
-            <div className="">
-                <p className="gen-sum">cart total: {user.cartTotal}<span className="fw-light fs-6">₪</span></p>
+            
+        {cartData.length? (<>
+            <h1 className="display-2 page-title">Cart</h1>
+            <div className="container mx-auto d-flex justify-content-center w-100 mb-5 mt-3">
+                <div className="">
+                    <p className="gen-sum">cart total: {user.cartTotal}<span className="fw-light fs-6">₪</span></p>
+                </div>
+                <div className="">
+                    <button className="gen-btn" onClick={handleCheckout}>Checkout</button>
+                </div>
             </div>
-            <div className="">
-                <button className="gen-btn" onClick={handleCheckout}>Checkout</button>
-            </div>
-        </div>
-        {cartData.length? (
             <div className="row mx-0 px-5">
                 {cartData.map((minItem:any)=>(
                     <div key={minItem._id} className='col-lg-3 col-md-4 col-sm-6 col-12'>
@@ -79,7 +80,10 @@ const Cart: FunctionComponent<CartProps> = () => {
                     </div>
                 ))}
             </div>
-                ):(<p className="text-light">No Products in Cart...</p>)}
+        </>):(
+            <div className="empty-cart-container pb-5">
+                <img className="pb-3 pt-5 mb-5" src="/empty-cart.png" alt="No items in cart" />
+            </div>)}
         
     </> );
 }
